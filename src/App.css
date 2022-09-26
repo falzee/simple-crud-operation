@@ -1,0 +1,185 @@
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  overflow: hidden;
+}
+/* Log/Reg */
+.container-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-container{
+ width: 18%;
+ padding: 15px;
+}
+
+.auth-item{
+  margin-bottom: 10px;
+}
+.auth-container h1{
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.ant-btn-primary {
+  background-color: #3B5A7E;
+  border: none;
+}
+.ant-btn-primary:hover {
+  background-color: #3568a3;
+}
+.auth-container button {
+  width: 100%;
+  margin-top: 30px;
+  font-size: 14px;
+  padding: auto;
+  border-radius: 4px;
+  font-weight: 500;
+  
+}
+
+
+.bottom-auth{
+  text-align: center;
+  font-weight: normal;
+}
+.bottom-auth p{
+  margin-bottom: 4px;
+  
+}
+.bottom-auth a{
+  color: #3B5A7E;
+}
+.bottom-auth a:hover{
+  color: #3568a3;
+}
+/* navbar*/
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background-color: transparent;
+  font-size: large;
+  line-height: 64px;
+  margin-left: 0;
+}
+
+.navbar a:visited {
+  color: black;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
+  margin-top: -1px;
+  margin-bottom: 0;
+  padding: 0 10px;
+}
+.ant-menu-horizontal, .ant-menu-item::after, .ant-menu-submenu::after {
+  border: none !important;
+}
+/* about */
+.about-bot .bot-hover{
+  display: none;
+  z-index: 99;
+}
+.about-bot:hover .bot-hover {
+  display: inline;
+}
+.about-bot:hover .bot {
+  display: none;
+}
+/* home */
+.image-home{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+}
+@media only screen and (max-width: 1600px) {
+  /* For tablets: */
+  .auth-container {
+    width: 300px;
+  }
+  
+}
+
+@media only screen and (max-width: 400px) {
+  .button-table{
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+}
+
+@media only screen and (max-width: 830px) {
+  .image-home{
+    
+    transform: translateY(30%);
+  }
+}
+@media only screen and (max-height: 400px) {
+  .image-home{
+    
+    transform: translateY(30%);
+  }
+  
+}
+@media only screen and (max-height: 500px) {
+  .auth-container{
+    height: 75%;
+    padding: 0;
+    width: 200px;
+    font-size: 10px;
+   }
+   .auth-container h1{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+  .ant-form-item{
+    margin-bottom: 5px;
+  }
+  .ant-form-item-label > label{
+    font-size: 10px;
+  
+  }
+  .ant-input{
+    font-size: 10px;
+  }
+  .auth-container button {
+    margin:  10px 0;
+    font-size: 10px;
+    height: auto;
+  }
+  .ant-form-item-explain-error {
+   font-size: 10px;
+  }
+  .auth-item {
+    margin-bottom: 5px;
+  }
+  
+}
+@media only screen and (min-width: 1300px )and (min-height:850px) {
+  .image-home{
+    
+    width: 843px;  
+    height: 637px;  
+
+  }
+}
