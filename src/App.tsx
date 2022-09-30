@@ -13,11 +13,10 @@ import ErrorPage from './pages/ErrorPage';
 import Tcrud from './pages/Tcrud';
 import Tdcrud from './pages/Tdcrud';
 import { useAppDispatch,useAppSelector } from './app/hooks'
-import {login,logout}  from './features/AuthSlice'
+
 
 function App() {
   const isLogin = useAppSelector((state)=> state.auth.isLogin)
-  const navigate = useNavigate();
   return (
     <div className="App">
           <Routes>
@@ -35,6 +34,7 @@ function App() {
             }
             {!isLogin && 
             <>
+              <Route element={<Login/>} path="/"/>
               <Route element={<Login/>} path="/login"/>
               <Route element={<Register/>} path="/register"/>
             </>            

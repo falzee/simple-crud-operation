@@ -1,30 +1,45 @@
-import { Button, Checkbox, Form, FormInstance, Input } from 'antd';
+import { Button, Checkbox, Form, FormInstance, Input, message } from 'antd';
 import background from '../images/bg-login-2.png';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Register from './Register';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useAppDispatch,useAppSelector } from '../app/hooks'
-import {login,logout}  from '../features/AuthSlice'
-import axios from 'axios';
+import { postLogIn}  from '../features/AuthSlice'
+// import {login,logout}  from '../features/AuthSlice'
+
 
 const App = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const {isLogin,error,loading} = useAppSelector((state)=> state.auth)
 
-  const onFinish = (values :any) => {
-    console.log('Success:', values); 
-  
-    dispatch(login()) 
-    navigate('/');
+  // const successMessage = () => {
+  //   message.success('Successfully Logged in');
+  // };
+  const errorMessage = () => {
+    message.error('Please Enter Correct Email Address and Password');
   };
+  //bisa login tapi state gk berubah
+  const onFinish = (values: any) => {
+      dispatch(postLogIn(values));
+      navigate('/' , { replace: true }); 
 
+      // console.log('Success:', values);
+  };
+  console.log(isLogin)  
+  // console.log(isLogin) 
+  useEffect(() => {
+    if (error) {
+      errorMessage();
+    }
+  }, [error]);
+  
   const onFinishFailed = (errorInfo : any) => {
     console.log('Failed:', errorInfo);
-    navigate('/login')
+    navigate('/login');
   };
 
   return (
@@ -55,6 +70,7 @@ const App = () => {
             rules={[
               {
                 required: true,
+                type: "email",
                 message: 'Please input your email!',
               },
             ]}
@@ -68,15 +84,18 @@ const App = () => {
             name="password"
             rules={[
               {
-                required: true,
                 pattern: new RegExp(
                   /^[0-9a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i
                 ),
                 message: 'Please input your password without space character!',
               },
               {
-                  min: 8,
-                  message: 'The password must be minimum 8 character'
+                  min: 6,
+                  message: 'The password must be minimum 6 character'
+              },
+              {
+                required: true,
+                message: 'Please input your Password!'
               }
             ]}
           >
@@ -86,7 +105,7 @@ const App = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" >
               Login
             </Button>
           </Form.Item>
@@ -101,39 +120,3 @@ const App = () => {
 };
 
 export default App;
-// function setError(arg0: string) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function logIn(form: FormInstance<any>) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function googleSignIn() {
-//   throw new Error('Function not implemented.');
-// }
-  // /* eslint-disable */ 
-    // async (values:any) => {
-    //     try {
-    //       const response = await axios.post("http://localhost:5000/login", values);
-    //         // If you want to get something back
-    //         // return response.data;
-    //     } catch (err) {
-    //       console.error(err)
-    //     }
-    //   }
-    // /* eslint-enable */
- // useEffect(()=> {
-  //     dispatch(authActions.getAuth() )
-  // }, [])
-  // const auth = getAuth();
-  // signInWithEmailAndPassword(auth, email, password)
-  // .then((userCredential) => {
-  //   // Signed in 
-  //   const user = userCredential.user;
-  //   // ...
-  // })
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  // });

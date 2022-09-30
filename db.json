@@ -1,71 +1,76 @@
 {
-    "users": [
-      {
-        "email": "test@testing.com",
-        "password": "$2a$10$Cmx4Lz9Sr600sxxe4zlcmeV3RVutSdSSiwQvmJlmi/HiSsP/G5HNO",
-        "id": 1
-      }
-    ],
-    "table": [
-      {
-        "key": 1,
-        "name": "Abdul Radah",
-        "age": 21,
-        "address": "Kulas Light Apt. 556, PA 675867"
-      },
-      {
-        "key": 2,
-        "name": "Zane West",
-        "age": 22,
-        "address": "7346 Argyle Dr.Lenoir, NC 28645"
-      },
-      {
-        "key": 3,
-        "name": "Kristina Riggs",
-        "age": 23,
-        "address": "8898 South Bow Ridge St. Cary, NC 27511"
-      },
-      {
-        "key": 4,
-        "name": "Fernanda Delacruz",
-        "age": 24,
-        "address": "738 N. Blue Spring Street Holland, MI 49423"
-      },
-      {
-        "key": 5,
-        "name": "Alena Vance",
-        "age": 25,
-        "address": "48 Belmont Road Coraopolis, PA 15108"
-      },
-      {
-        "key": 6,
-        "name": "Kobe Robinson",
-        "age": 26,
-        "address": "25 Jackson Dr. Owosso, MI 48867"
-      },
-      {
-        "key": 7,
-        "name": "Douglas Harrington",
-        "age": 27,
-        "address": "83 Canterbury Ave. Valley Stream, NY 11580"
-      },
-      {
-        "key": 8,
-        "name": "Brett Hahn",
-        "age": 28,
-        "address": "7 Glenwood Lane Pataskala, OH 43062"
-      },
-      {
-        "key": 9,
-        "name": "Kamren Ali",
-        "age": 29,
-        "address": "5 S. Nichols Rd. Tuckerton, NJ 08087"
-      },
-      {
-        "id": 10,
-        "name": "Ezekiel Booth",
-        "age": 30,
-        "address": "8897 Prospect St. Lynn, MA 01902"
-      }
-    ]
-  }
+  "users": [
+    {
+      "email": "test@testing.com",
+      "password": "$2a$10$Cmx4Lz9Sr600sxxe4zlcmeV3RVutSdSSiwQvmJlmi/HiSsP/G5HNO",
+      "id": 1
+    },
+    {
+      "email": "test2@mail.com",
+      "password": "$2a$10$oF0hjB5ChEyVTEKIw.Ojau/7b6l5vbUENNc5V3aiSoV2Z/53vuose",
+      "id": 2
+    }
+  ],
+  "table": [
+    {
+      "key": 1,
+      "name": "Abdul Radah",
+      "age": 21,
+      "address": "Kulas Light Apt. 556, PA 675867"
+    },
+    {
+      "key": 2,
+      "name": "Zane West",
+      "age": 22,
+      "address": "7346 Argyle Dr.Lenoir, NC 28645"
+    },
+    {
+      "key": 3,
+      "name": "Kristina Riggs",
+      "age": 23,
+      "address": "8898 South Bow Ridge St. Cary, NC 27511"
+    },
+    {
+      "key": 4,
+      "name": "Fernanda Delacruz",
+      "age": 24,
+      "address": "738 N. Blue Spring Street Holland, MI 49423"
+    },
+    {
+      "key": 5,
+      "name": "Alena Vance",
+      "age": 25,
+      "address": "48 Belmont Road Coraopolis, PA 15108"
+    },
+    {
+      "key": 6,
+      "name": "Kobe Robinson",
+      "age": 26,
+      "address": "25 Jackson Dr. Owosso, MI 48867"
+    },
+    {
+      "key": 7,
+      "name": "Douglas Harrington",
+      "age": 27,
+      "address": "83 Canterbury Ave. Valley Stream, NY 11580"
+    },
+    {
+      "key": 8,
+      "name": "Brett Hahn",
+      "age": 28,
+      "address": "7 Glenwood Lane Pataskala, OH 43062"
+    },
+    {
+      "key": 9,
+      "name": "Kamren Ali",
+      "age": 29,
+      "address": "5 S. Nichols Rd. Tuckerton, NJ 08087"
+    },
+    {
+      "id": 10,
+      "name": "Ezekiel Booth",
+      "age": 30,
+      "address": "8897 Prospect St. Lynn, MA 01902"
+    }
+  ]
+}

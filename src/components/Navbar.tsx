@@ -2,7 +2,9 @@ import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/ico
 import { Button, MenuProps } from 'antd';
 import { Menu } from 'antd';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 
 //button belum fix
 const items: MenuProps['items'] = [
@@ -37,6 +39,7 @@ const Navbar: React.FC = () => {
     setCurrent(e.key);
   };
 
+
   return (
     <div className='navbar' style={{ display:'flex'}}>
           <Menu 
@@ -50,6 +53,7 @@ const Navbar: React.FC = () => {
           margin:'0 30px 0 auto',
           zIndex:'200',
           }} >
+
         <Button type="primary">
           <a href="./login" style={{ color:'white'}}>Logout</a> 
         </Button>

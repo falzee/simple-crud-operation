@@ -5,7 +5,7 @@ import axios from "axios";
 import { uniqueNamesGenerator, Config, names } from 'unique-names-generator';
 
 interface DataType {
-    key: string;
+    key: number;
     name: string;
     age: number;
     address: string;
@@ -57,7 +57,7 @@ const Tcrud: React.FC = () => {
     const [form] = Form.useForm();
     const [gridData, setgridData] = useState<DataType[]>([]);
     const [loading, setloading] = useState<boolean>(false);
-    const [editingKey, setEditingKey] = useState('')
+    const [editingKey, setEditingKey] = useState<string | number>('')
     const [editRow, setEditRow] = useState(true);
     //edit func
     const isEditing = (record: DataType) => record.key === editingKey;
@@ -125,7 +125,7 @@ const Tcrud: React.FC = () => {
     // // const myVar = 'id' as ObjectKey;
     // const dataLength:number = Object.keys(gridData).length
     
-    const [count, setCount] = useState('11');
+    const [count, setCount] = useState(11);
 
     function randomNumber(min:number, max:number) {
       return Math.floor(Math.random() * (max - min)) + min;

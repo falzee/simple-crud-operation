@@ -2,14 +2,31 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import background from '../images/bg-login-2.png'
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { postReg } from '../features/AuthSlice';
+import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../app/hooks';
+
 
 //belum dirapiin
 const Register = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const onFinish = (values : any) => {
-    console.log('Success:', values);
-    navigate('/login');
+  const dispatch = useAppDispatch();
+  const onFinish = async (values: any) => {
+    try {
+      await dispatch(postReg(values));
+      // if (isLogin === true){
+        navigate('/')
+      // }else{
+      //  navigate('/login', { replace: true });
+      // }
+      console.log('Success:', values); 
+    } catch (error) {
+      // if (error.response.status === 400) {
+      //   navigate('/login', { replace: true })
+      // }
+      // catch and handle any rejected Promises or thrown errors
+    }
   };
 
   const onFinishFailed = (errorInfo : any) => {
@@ -35,16 +52,17 @@ const Register = () => {
 
           <Form.Item
             className='auth-item'
-            label="Username"
-            name="username"
+            label="Email"
+            name="email"
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                type: "email",
+                message: 'Please input your email!',
               },
             ]}
           >
-            <Input placeholder="Username" />
+            <Input placeholder="Email" />
           </Form.Item>
 
           <Form.Item
@@ -53,15 +71,18 @@ const Register = () => {
             name="password"
             rules={[
               {
-                required: true,
                 pattern: new RegExp(
                   /^[0-9a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/i
                 ),
                 message: 'Please input your password without space character!',
               },
               {
-                  min: 8,
-                  message: 'The password must be minimum 8 character'
+                  min: 6,
+                  message: 'The password must be minimum 6 character'
+              },
+              {
+                required: true,
+                message: 'Please input your Password!'
               }
             ]}
           >
