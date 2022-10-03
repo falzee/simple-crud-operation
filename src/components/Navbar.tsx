@@ -4,6 +4,8 @@ import { Menu } from 'antd';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../app/hooks';
+import { reset } from '../features/AuthSlice';
 
 
 //button belum fix
@@ -38,7 +40,7 @@ const Navbar: React.FC = () => {
     console.log('click ', e);
     setCurrent(e.key);
   };
-
+  const dispatch = useAppDispatch();
 
   return (
     <div className='navbar' style={{ display:'flex'}}>
@@ -55,7 +57,7 @@ const Navbar: React.FC = () => {
           }} >
 
         <Button type="primary">
-          <a href="./login" style={{ color:'white'}}>Logout</a> 
+          <Link to='./login' style={{color:'white'}} onClick={()=> dispatch(reset())}>Logout</Link>
         </Button>
         </div>
     </div>
