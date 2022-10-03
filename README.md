@@ -1,7 +1,7 @@
 # Simple Crud Operations
 Still in development...
 ## Preveiw demo 
-[Demo]https://falzee.github.io/simple-crud-operation/)
+[Demo](https://falzee.github.io/simple-crud-operation/)
 <p align="center">
   <img src="https://github.com/falzee/simple-crud-operation/blob/master/src/images/testing%20prtototype%20demo.gif" alt="animated" />
 </p>
