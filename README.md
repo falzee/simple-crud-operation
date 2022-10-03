@@ -5,9 +5,8 @@ Still in development...
   <img src="https://github.com/falzee/simple-crud-operation/blob/master/src/images/testing%20prtototype%20demo.gif" alt="animated" />
 </p>
 
-\### Project status
+## Bug
+- [x] Warning error on crud
+- [] state not changing when login
+- [] redux issues
 
-- [x] Design
-- [x] Mockups
-- [x] Development
-- [x] Unit testing
