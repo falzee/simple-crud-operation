@@ -36,13 +36,21 @@ Response == 200
     "token": "QpwL5tke4Pnpja7X4"
   }
 ```
+[Visit reqres website for full documentation](https://reqres.in/)
 
 ## UX & UI Design
 - [UX Researching](https://miro.com/app/board/uXjVPa1tA5E=/?share_link_id=449751157116)
 - [UI Designing](https://www.figma.com/file/SfngNwfTRTIguyzhYF7BuV/Prototype-2-Log%2FReg%5BUI%5D)
 
+## Todo
+- [x] Cleaning code
+- [x] Deploying
+- [ ] Logout functionality
+- [ ] Adding local or session storage
+- [ ] Adding proper routing using useauth
+
 ## Bug
 - [x] Warning error on crud (resolved)
-- [ ] state not changing when login
-- [ ] redux issues
+- [ ] State not changing when login
+- [ ] Redux issues
 - [ ] Sometimes success login message not working
