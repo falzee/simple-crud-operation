@@ -7,8 +7,8 @@ Still in development...
 
 ## UX & UI Design
 
-[UX Researching](https://miro.com/app/board/uXjVPa1tA5E=/?share_link_id=449751157116)
-[UI Designing](https://www.figma.com/file/SfngNwfTRTIguyzhYF7BuV/Prototype-2-Log%2FReg%5BUI%5D)
+- [UX Researching](https://miro.com/app/board/uXjVPa1tA5E=/?share_link_id=449751157116)
+- [UI Designing](https://www.figma.com/file/SfngNwfTRTIguyzhYF7BuV/Prototype-2-Log%2FReg%5BUI%5D)
 
 ## Bug
 - [x] Warning error on crud (resolved)
