@@ -14,4 +14,4 @@ Still in development...
 - [x] Warning error on crud (resolved)
 - [ ] state not changing when login
 - [ ] redux issues
-
+- [ ] Sometimes succeess login message not working
