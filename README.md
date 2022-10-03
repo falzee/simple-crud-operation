@@ -4,6 +4,7 @@ Still in development...
 <p align="center">
   <img src="https://github.com/falzee/simple-crud-operation/blob/master/src/images/testing%20prtototype%20demo.gif" alt="animated" />
 </p>
+
 ## UX & UI Design
 
 [UX Researching](https://miro.com/app/board/uXjVPa1tA5E=/?share_link_id=449751157116)
