@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { createSlice, createAsyncThunk,PayloadAction } from '@reduxjs/toolkit'
 
-//user butuh di definisikan type yang beda karena isinya ada lagi
 // json-server db.json -m ./node_modules/json-server-auth --port 5000
 type User = {
-    id: number
+    id?: number
     email: string
     password: string
 }
@@ -14,21 +13,23 @@ type InitialState = {
     users: User[]
     error: boolean
     isLogin: boolean
+    isReg: boolean
 }
 const initialState: InitialState = {
     loading: false,
     users: [],
     error: false,
-    isLogin: false
+    isLogin: false,
+    isReg: false
 }
 
 export const postLogIn = createAsyncThunk(
   "auth/postLogIn",
-  async ({ email, password }: User) => {
+  async (users: User) => {
     return axios
-      .post("http://localhost:5000/login", {
-        email,
-        password
+      .post("https://reqres.in/api/login", {
+        email: users.email,
+        password: users.password
       })
       
      .then((response)=> response.data)
@@ -40,13 +41,14 @@ export const postLogIn = createAsyncThunk(
       });
   }
 );
+
 export const postReg = createAsyncThunk(
   "auth/postReg",
-  async ({ email, password }: User) => {
+  async (users: User) => {
     return axios
-      .post("http://localhost:5000/register", {
-        email,
-        password
+      .post("https://reqres.in/api/login", {
+        email: users.email,
+        password: users.password
       })
       
      .then((response)=> response.data)
@@ -56,17 +58,14 @@ export const postReg = createAsyncThunk(
       });
   }
 );
+// http://localhost:5000/register if using json server auth
+// http://localhost:5000/login
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    //tambahin props reducers
     reducers: {   
-      login(state){
-        state.isLogin =true;
-      },
-      logout(state){
-        state.isLogin =false;
-      }
+      reset: (state) => initialState
     }, 
     extraReducers: (builder) => {
       builder.addCase(postLogIn.pending, (state) => {
@@ -77,8 +76,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = false;
         state.isLogin = true;
-        state.users = action.payload
-        return state;
+        state.users = action.payload;
       });
       builder.addCase(postLogIn.rejected, (state) => {
         state.loading = false;
@@ -89,18 +87,21 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = false;
       });
-      builder.addCase(postReg.fulfilled, (state) => {
+      builder.addCase(postReg.fulfilled, (state,action: PayloadAction<any>) => {
         state.loading = false;
         state.error = false;
+        state.isReg = true;
+        state.users = action.payload
       });
       builder.addCase(postReg.rejected, (state) => {
         state.loading = false;
         state.error = true;
+        state.isReg = false;
       });
     }
   }
 )
-export const {login,logout} = authSlice.actions
+export const {reset} = authSlice.actions
 export default authSlice.reducer
 
 // export const fetchUsers = createAsyncThunk('user/fetchUsers',()=>{

@@ -59,72 +59,58 @@ const Tcrud: React.FC = () => {
     const [loading, setloading] = useState<boolean>(false);
     const [editingKey, setEditingKey] = useState<string | number>('')
     const [editRow, setEditRow] = useState(true);
-    //edit func
+    //edit function
     const isEditing = (record: DataType) => record.key === editingKey;
 
-  const edit = (record: Partial<DataType> & { key: React.Key }) => {
-    form.setFieldsValue({ name: '', age: '', address: '', ...record });
-    setEditingKey(record.key);
-  };
-  const save = async (key: React.Key) => {
-    try {
-      const row = (await form.validateFields()) as DataType;
+    const edit = (record: Partial<DataType> & { key: React.Key }) => {
+      form.setFieldsValue({ name: '', age: '', address: '', ...record });
+      setEditingKey(record.key);
+    };
+    const save = async (key: React.Key) => {
+      try {
+        const row = (await form.validateFields()) as DataType;
 
-      const newData = [...gridData];
-      const index = newData.findIndex(item => key === item.key);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        setgridData(newData);
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        setgridData(newData);
-        setEditingKey('');
+        const newData = [...gridData];
+        const index = newData.findIndex(item => key === item.key);
+        if (index > -1) {
+          const item = newData[index];
+          newData.splice(index, 1, {
+            ...item,
+            ...row,
+          });
+          setgridData(newData);
+          setEditingKey('');
+        } else {
+          newData.push(row);
+          setgridData(newData);
+          setEditingKey('');
+        }
+      } catch (errInfo) {
+        console.log('Validate Failed:', errInfo);
       }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
-  };
-
+    };
+    //fetch api 
     useEffect(() => {
-        dataSource();
+      dataSource();
     }, []);
-    //fetch data
+
     const dataSource = async () => {
-        setloading(true);
+      setloading(true);
         const response =await axios.get(
-            "http://localhost:5000/table"
+          "http://localhost:5000/table"
         );
         setgridData(response.data);
         setloading(false)
     }
-    // console.log("gridData",gridData);
-
+    //delete and cancel
     const handleDelete = (key: React.Key) => {
         const newData = gridData.filter(item => item.key !== key);
         setgridData(newData);
     };
-    const dataChange = gridData.map(({...item}: DataType) => ({
-        key: item.key,
-    }))
     const cancel = () => {
       setEditingKey('');
     };
-    // const counter = (key: React.Key) => {
-    //     // const lastValue = Object.values(gridData).pop();
-    //     gridData.filter(item => item.key.)
-    //     // const newData = gridData.filter(item => item.key !== key);
-    //     // setgridData(newData);
-    // };
-    // const lastValue = gridData[-1];
-    // // type ObjectKey = keyof typeof lastValue;
-    // // const myVar = 'id' as ObjectKey;
-    // const dataLength:number = Object.keys(gridData).length
-    
+    //counter and randomizer for adding data
     const [count, setCount] = useState(11);
 
     function randomNumber(min:number, max:number) {
@@ -158,7 +144,8 @@ const Tcrud: React.FC = () => {
         setgridData([...gridData, newData]);
         setCount(count + 1);
       };
-      
+
+    //columns   
     const columns = [
     {
         title: 'Name',
@@ -191,38 +178,33 @@ const Tcrud: React.FC = () => {
           return editable ? (
             <Space className='button-table' size="middle"  >
               <Button onClick={() => save(record.key)} style={{ borderRadius: '4px'}}>
-                      Save
+                    Save
                   </Button>
-                 
-                  <Button  style={{ borderRadius: '4px'}} onClick={cancel}>
-                      Cancel
+              <Button  style={{ borderRadius: '4px'}} onClick={cancel}>
+                    Cancel
                   </Button>
             </Space>
           ) : (
             <>
             <Space className='button-table' size="middle" >
                   <Tooltip placement="bottom" title='Edit'>
-                  <Button style={{ borderRadius: '4px'}} disabled={editingKey !== ''} onClick={() => edit(record)}>
-                      <EditOutlined />
-                  </Button>
+                    <Button style={{ borderRadius: '4px'}} disabled={editingKey !== ''} onClick={() => edit(record)}>
+                        <EditOutlined />
+                    </Button>
                   </Tooltip>
                   <Tooltip placement="bottom" title='Delete'>
-                  <Button type="primary" danger  disabled={editingKey !== ''} style={{ borderRadius: '4px'}} onClick={() => showModal(record)} >
-                      <DeleteOutlined />
-                  </Button>
+                    <Button type="primary" danger  disabled={editingKey !== ''} style={{ borderRadius: '4px'}} onClick={() => showModal(record)} >
+                        <DeleteOutlined />
+                    </Button>
                   </Tooltip>          
             </Space>
             </>
           );
-          
-        },   
-               
+        },                 
     },
-    
-    
-    // delete worked(resolved)
-    // name still aughhh(resolved)
     ];
+
+    //merging column
     const mergedColumns = columns.map(col => {
         if (!col.editable) {
           return col;
@@ -238,7 +220,8 @@ const Tcrud: React.FC = () => {
           }),
         };
       });
-  //modal
+
+    //modal
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modaldata, setmodaldata] = useState<any>([]);
     const showModal = (record:any) => {
@@ -259,25 +242,25 @@ const Tcrud: React.FC = () => {
     return(
     <div 
     style={{ 
-    display:'flex',
-    flexDirection:'column',
-    padding:'20px 0 80px',
-    width:'100vw',
-    height:'inherit',
-    alignItems:'center',
-    overflow:'auto'
+      display:'flex',
+      flexDirection:'column',
+      padding:'20px 0 80px',
+      width:'100vw',
+      height:'inherit',
+      alignItems:'center',
+      overflow:'auto'
     }}
     >
     <div style={{ width:'90%',maxWidth:'1200px',minWidth:''}} >
-        <div  style={{ display:'flex',padding:'10px 0'}}>
+      <div  style={{ display:'flex',padding:'10px 0'}}>
         <Typography.Title level={2}  style={{ margin: 0 }}>
-            Table    
-            </Typography.Title>
+          Table    
+        </Typography.Title>
         <Button style={{ width:'auto', marginLeft:'auto'}} type="primary" onClick={handleAdd}>
           Add Random Data
         </Button>
-        </div>
-    <Form form={form} component={false}>
+      </div>
+      <Form form={form} component={false}>
         <Table 
         components={{
             body: {
@@ -289,9 +272,9 @@ const Tcrud: React.FC = () => {
         scroll={{ x: 500 }} 
         columns={mergedColumns}
         rowClassName="editable-row"
-        pagination={{ defaultPageSize: 5, showSizeChanger: true,pageSizeOptions: ['5', '10', '20'] }} />
+        rowKey='name'
+        pagination={{ defaultPageSize: 5, showSizeChanger: true,pageSizeOptions: ['5', '10', '20']}} />
     </Form>
-    
     <Modal title="Delete Products" centered open={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <p>Are you sure delete {modaldata.name}?</p>
     </Modal>
@@ -301,6 +284,7 @@ const Tcrud: React.FC = () => {
 };
 
 export default Tcrud;
+
 // const [dataSource, setDataSource] = useState<DataType[]>([
 //     {
 //       key: '0',
@@ -321,5 +305,16 @@ export default Tcrud;
   
     // }))
     // console.log("dataChange",dataChange);
-  //hapus data
+
+      // const counter = (key: React.Key) => {
+    //     // const lastValue = Object.values(gridData).pop();
+    //     gridData.filter(item => item.key.)
+    //     // const newData = gridData.filter(item => item.key !== key);
+    //     // setgridData(newData);
+    // };
+    // const lastValue = gridData[-1];
+    // // type ObjectKey = keyof typeof lastValue;
+    // // const myVar = 'id' as ObjectKey;
+    // const dataLength:number = Object.keys(gridData).length
+    
   

@@ -18,7 +18,7 @@ const ErrorPage = (props: Props) => {
       paddingBottom:'15%'
     }}
     >
-      <Typography.Title level={1} style={{ display:'flex', width:'300px' }}>
+      <Typography.Title level={1} style={{ display:'flex', width:'300px',marginTop:'10%' }}>
         404 Not Found   
       </Typography.Title> 
     

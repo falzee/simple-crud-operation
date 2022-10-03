@@ -1,13 +1,10 @@
-import { Button, Checkbox, Form, FormInstance, Input, message } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import background from '../images/bg-login-2.png';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useAppDispatch,useAppSelector } from '../app/hooks'
-import { postLogIn}  from '../features/AuthSlice'
-// import {login,logout}  from '../features/AuthSlice'
+import { postLogIn, reset }  from '../features/AuthSlice'
 
 
 const App = () => {
@@ -15,28 +12,46 @@ const App = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {isLogin,error,loading} = useAppSelector((state)=> state.auth)
+  const auth = useAppSelector((state)=> state.auth)
 
-  // const successMessage = () => {
-  //   message.success('Successfully Logged in');
-  // };
+  useEffect(() => {
+    form.setFieldsValue(auth)
+  }, [form, auth])
+
+  const successMessage = () => {
+    message.success('Successfully Logged in');
+  };
   const errorMessage = () => {
     message.error('Please Enter Correct Email Address and Password');
   };
-  //bisa login tapi state gk berubah
-  const onFinish = (values: any) => {
-      dispatch(postLogIn(values));
-      navigate('/' , { replace: true }); 
-
-      // console.log('Success:', values);
+  const loadMessage = () => {
+    const hide = message.loading('Please Wait..', 0);
+    // Dismiss manually and asynchronously
+    setTimeout(hide, 200);
   };
-  console.log(isLogin)  
-  // console.log(isLogin) 
+  
+  const onFinish = () => {
+    form.validateFields()
+			.then((values:any) => {
+			  dispatch(postLogIn(values));       
+			})
+			.catch((error) => error.message);
+  };
+
   useEffect(() => {
     if (error) {
       errorMessage();
+      navigate('/login' , { replace: true }); 
+    }else if(loading){
+      loadMessage();
+    }else if(isLogin){
+      successMessage();
+      navigate('/' , { replace: true }); 
     }
-  }, [error]);
-  
+  }, [error,loading]);
+  console.log(isLogin)  
+  // console.log(isLogin) 
+
   const onFinishFailed = (errorInfo : any) => {
     console.log('Failed:', errorInfo);
     navigate('/login');
@@ -44,11 +59,13 @@ const App = () => {
 
   return (
     <div className='container-page' 
-    style={{ backgroundImage: `url(${background})` ,
-    backgroundSize: 'cover',
-    backgroundRepeat:'no-repeat',
-    backgroundPosition:'center',
-    position:'relative'}}>
+    style={{ 
+      backgroundImage: `url(${background})` ,
+      backgroundSize: 'cover',
+      backgroundRepeat:'no-repeat',
+      backgroundPosition:'center',
+      position:'relative'}}
+    >
       <div className='auth-container'>
         <h1>Login</h1>
         <Form
