@@ -54,3 +54,4 @@ Response == 200
 - [ ] State not changing when login
 - [ ] Redux issues
 - [ ] Sometimes success login message not working
+- [ ] Password not working when using reqres, but work when use json server
