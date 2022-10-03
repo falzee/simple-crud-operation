@@ -6,7 +6,7 @@ Still in development...
 </p>
 
 ## Bug
-- [x] Warning error on crud
+- [x] Warning error on crud (resolved)
 - [ ] state not changing when login
 - [ ] redux issues
 
