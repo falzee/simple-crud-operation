@@ -56,7 +56,7 @@ Response == 200
 - [x] Cleaning code
 - [x] Deploying
 - [x] Logout functionality
-- [ ] Add react persist
+- [ ] Add redux persist
 
 ## Bug
 - [x] Warning error on crud (resolved)
