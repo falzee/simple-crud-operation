@@ -6,6 +6,16 @@ Still in development...
   <img src="https://github.com/falzee/simple-crud-operation/blob/master/src/images/testing%20prtototype%20demo.gif" alt="animated" />
 </p>
 
+## Using JSON Server Fake API
+#### Email and Password for Login
+Request /login
+```bash
+  {
+    "email": "test@testing.com",
+    "password": "test123"
+  }
+```
+
 ## Using Reqres Fake API
 #### POST Login 
 Request /api/login
@@ -45,12 +55,12 @@ Response == 200
 ## Todo
 - [x] Cleaning code
 - [x] Deploying
-- [ ] Logout functionality
-- [ ] Adding local or session storage
-- [ ] Adding proper routing using useauth
+- [x] Logout functionality
+- [ ] Add redux persist
 
 ## Bug
 - [x] Warning error on crud (resolved)
-- [ ] State not changing when login
-- [ ] Redux issues
+- [ ] State not changing when login (need persist)
+- [x] Redux issues
 - [ ] Sometimes success login message not working
+- [ ] About page image hover create layout problem
