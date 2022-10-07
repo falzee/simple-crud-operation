@@ -56,11 +56,11 @@ Response == 200
 - [x] Cleaning code
 - [x] Deploying
 - [x] Logout functionality
-- [ ] Add redux persist
+- [x] Add redux persist
 
 ## Bug
 - [x] Warning error on crud (resolved)
-- [ ] State not changing when login (need persist)
+- [x] State not changing when login (need persist)
 - [x] Redux issues
-- [ ] Sometimes success login message not working
+- [x] Sometimes success login message not working
 - [ ] About page image hover create layout problem
