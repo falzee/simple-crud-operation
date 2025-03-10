@@ -1,5 +1,4 @@
 # Simple Crud Operations
-Still in development...
 ## Preveiw demo 
 [Demo](https://falzee.github.io/simple-crud-operation/)
 <p align="center">
